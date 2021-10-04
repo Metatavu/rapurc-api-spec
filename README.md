@@ -1,2 +1,2 @@
-# api-spec-template
-Template repository for REST API spec
+# rapurc-api-spec
+Repository for Rapurc REST API spec
