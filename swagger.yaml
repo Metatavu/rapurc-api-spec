@@ -53,7 +53,7 @@ paths:
           description: Filter by survey status
           required: false
           schema:
-            type: string
+            $ref: "#/components/schemas/SurveyStatus"
       responses:
         "200":
           description: List of surveys
