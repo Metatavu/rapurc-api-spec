@@ -305,15 +305,15 @@ components:
           format: uuid
           description: ID of creator
           readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          description: Id of last modifier
-          readOnly: true
         createdAt:
           type: string
           format: date-time
           description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
           readOnly: true
         modifiedAt:
           type: string
@@ -322,7 +322,7 @@ components:
           readOnly: true
 
     SurveyStatus:
-      type: object
+      type: string
       description: Survey status enum
       enum:
         - DRAFT
