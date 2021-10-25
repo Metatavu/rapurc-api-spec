@@ -327,3 +327,162 @@ components:
       enum:
         - DRAFT
         - DONE
+
+    OwnerInformation:
+      type: object
+      description: Information about the owner of the building
+      required:
+        - surveyId
+        - name
+        - legalName
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the building information object
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
+        name:
+          type: string
+          description: Name
+        legalName:
+          type: string
+          description: Official name
+
+    BuildingInformation:
+      type: object
+      description: Information about the building
+      required:
+        - surveyId
+        - streetAddress
+        - city
+        - postCode
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the building information object
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
+        propertyId:
+          type: string
+          description: Property id
+        buildingId:
+          type: string
+          description: Building id
+        buildingType:
+          type: string
+          description: Building type
+        constructionYear:
+          type: number
+          description: Construction year
+        space:
+          type: number
+          description: Space of the building in square meters
+        volume:
+          type: number
+          description: Volume of the building in qubic meters
+        floors:
+          type: number
+          description: Number of floors
+        basements:
+          type: number
+          description: Number of basements
+        basementMaterial:
+          type: string
+          description: Material of basement
+        supportinStructure:
+          type: string
+          description: Supporting structure
+        facadeMaterial:
+          type: string
+          description: Facade material
+        roofType:
+          type: string
+          description: Roof type
+        streetAddress:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        postCode:
+          type: number
+          description: Post code
+
+    InterviewInformation:
+      type: object
+      description: Interviews information
+      required:
+        - surveyId
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the interview information object
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
+        demolititionType:
+          type: string
+          description: Extent of demolition
+        startDate:
+          type: string
+          description: date
+        endDate:
+          type: string
+          description: date
+        interviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Interview"
+
+    Interview:
+      type: object
+      description: Interview
+      required:
+        - interviewId
+        - company
+        - name
+        - email
+        - phoneNumber
+        - reportDay
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the interview
+          readOnly: true
+        interviewId:
+          type: string
+          format: uuid
+          description: Id of the interview information
+        name:
+          type: string
+          description: Name
+        sukunimi:
+          type: string
+          description: Second name
+        company:
+          type: string
+          description: Company name
+        jobTitle:
+          type: string
+          description: Title in the company
+        phoneNumber:
+          type: string
+          description: Contact phone number
+        email:
+          type: string
+          description: Contact email address
+        reportDay:
+          type: date
+          description: Date of interview
