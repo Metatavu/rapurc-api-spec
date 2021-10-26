@@ -266,6 +266,227 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/owners:
+    get:
+      operationId: listOwnerInformation
+      summary: List owner information.
+      description: Lists owner information.
+      tags:
+        - Owners
+      parameters:
+        - name: surveyId
+          in: query
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of owner information data of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createOwnerInformation
+      summary: Create a new owner information object.
+      description: Creates a new owner information object.
+      tags:
+        - Owners
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OwnerInformation"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Owner Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  "/v1/owners/{ownerId}":
+    get:
+      operationId: findOwnerInformation
+      summary: Find owner information.
+      description: Finds owner information by id.
+      tags:
+        - Owners
+      parameters:
+        - name: ownerId
+          required: true
+          in: path
+          description: owner information id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateOwnerInformation
+      summary: Update owner information object.
+      description: Updates owner information object.
+      tags:
+        - Owners
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OwnerInformation"
+        description: Payload
+        required: true
+      parameters:
+        - name: ownerId
+          required: true
+          in: path
+          description: owner Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated Owner Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteOwnerInformation
+      summary: Delete owner information.
+      description: Deletes owner information.
+      tags:
+        - Owners
+      parameters:
+        - name: ownerId
+          required: true
+          in: path
+          description: owner Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -333,8 +554,6 @@ components:
       description: Information about the owner of the building
       required:
         - surveyId
-        - name
-        - legalName
       properties:
         id:
           type: string
@@ -345,144 +564,52 @@ components:
           type: string
           format: uuid
           description: Id of the survey
-        name:
+        ownerName:
           type: string
-          description: Name
-        legalName:
+          description: Name of the owner
+        businessId:
           type: string
-          description: Official name
-
-    BuildingInformation:
-      type: object
-      description: Information about the building
-      required:
-        - surveyId
-        - streetAddress
-        - city
-        - postCode
-      properties:
-        id:
+          description: Business ID
+        contactPerson:
+          $ref: "#/components/schemas/ContactPerson"
+        creatorId:
           type: string
           format: uuid
-          description: Id of the building information object
+          description: ID of creator
           readOnly: true
-        surveyId:
+        createdAt:
           type: string
-          format: uuid
-          description: Id of the survey
-        propertyId:
-          type: string
-          description: Property id
-        buildingId:
-          type: string
-          description: Building id
-        buildingType:
-          type: string
-          description: Building type
-        constructionYear:
-          type: number
-          description: Construction year
-        space:
-          type: number
-          description: Space of the building in square meters
-        volume:
-          type: number
-          description: Volume of the building in qubic meters
-        floors:
-          type: number
-          description: Number of floors
-        basements:
-          type: number
-          description: Number of basements
-        basementMaterial:
-          type: string
-          description: Material of basement
-        supportinStructure:
-          type: string
-          description: Supporting structure
-        facadeMaterial:
-          type: string
-          description: Facade material
-        roofType:
-          type: string
-          description: Roof type
-        streetAddress:
-          type: string
-          description: Street address
-        city:
-          type: string
-          description: City
-        postCode:
-          type: number
-          description: Post code
-
-    InterviewInformation:
-      type: object
-      description: Interviews information
-      required:
-        - surveyId
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Id of the interview information object
+          format: date-time
+          description: Created date
           readOnly: true
-        surveyId:
+        lastModifierId:
           type: string
           format: uuid
-          description: Id of the survey
-        demolititionType:
-          type: string
-          description: Extent of demolition
-        startDate:
-          type: string
-          description: date
-        endDate:
-          type: string
-          description: date
-        interviews:
-          type: array
-          items:
-            $ref: "#/components/schemas/Interview"
-
-    Interview:
-      type: object
-      description: Interview
-      required:
-        - interviewId
-        - company
-        - name
-        - email
-        - phoneNumber
-        - reportDay
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Id of the interview
+          description: Id of last modifier
           readOnly: true
-        interviewId:
+        modifiedAt:
           type: string
-          format: uuid
-          description: Id of the interview information
-        name:
+          format: date-time
+          description: Date modified
+          readOnly: true
+
+    ContactPerson:
+      type: object
+      description: Building owner contact person object
+      properties:
+        firstName:
           type: string
-          description: Name
-        sukunimi:
+          description: Contact persons first name
+        LastName:
           type: string
-          description: Second name
-        company:
+          description: Contact persons last name
+        phone:
           type: string
-          description: Company name
-        jobTitle:
-          type: string
-          description: Title in the company
-        phoneNumber:
-          type: string
-          description: Contact phone number
+          description: Contact persons phone number
         email:
           type: string
-          description: Contact email address
-        reportDay:
-          type: date
-          description: Date of interview
+          format: email
+          description: Contact persons email
+        profession:
+          type: string
+          description: Contact persons profession
