@@ -266,7 +266,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/owners:
+  /v1/surveys/{surveyId}/owners:
     get:
       operationId: listOwnerInformation
       summary: List owner information.
@@ -275,7 +275,7 @@ paths:
         - Owners
       parameters:
         - name: surveyId
-          in: query
+          in: path
           description: Survey Id
           required: true
           schema:
@@ -314,6 +314,14 @@ paths:
       description: Creates a new owner information object.
       tags:
         - Owners
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
       requestBody:
         content:
           application/json:
@@ -347,7 +355,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  "/v1/owners/{ownerId}":
+  /v1/surveys/{surveyId}/owners/{ownerId}:
     get:
       operationId: findOwnerInformation
       summary: Find owner information.
@@ -355,6 +363,13 @@ paths:
       tags:
         - Owners
       parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
         - name: ownerId
           required: true
           in: path
@@ -407,6 +422,13 @@ paths:
         description: Payload
         required: true
       parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
         - name: ownerId
           required: true
           in: path
@@ -452,6 +474,13 @@ paths:
       tags:
         - Owners
       parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
         - name: ownerId
           required: true
           in: path
