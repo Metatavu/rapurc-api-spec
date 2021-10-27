@@ -545,7 +545,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/BuildingInformation"
+                  $ref: "#/components/schemas/Building"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -572,8 +572,8 @@ paths:
                 $ref: "#/components/schemas/Error"
     post:
       operationId: createBuilding
-      summary: Create a new building information object.
-      description: Creates a new building information object.
+      summary: Create a new building object.
+      description: Creates a new building object.
       tags:
         - Buildings
       parameters:
@@ -588,7 +588,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BuildingInformation"
+              $ref: "#/components/schemas/Building"
         description: Payload
         required: true
       responses:
@@ -597,7 +597,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BuildingInformation"
+                $ref: "#/components/schemas/Building"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -626,8 +626,8 @@ paths:
   /v1/surveys/{surveyId}/buildings/{buildingId}:
     get:
       operationId: findBuilding
-      summary: Find building information.
-      description: Finds building information by id.
+      summary: Find building.
+      description: Finds building by id.
       tags:
         - Buildings
       parameters:
@@ -647,11 +647,11 @@ paths:
             format: uuid
       responses:
         "200":
-          description: Building information
+          description: Building
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BuildingInformation"
+                $ref: "#/components/schemas/Building"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -678,15 +678,15 @@ paths:
                 $ref: "#/components/schemas/Error"
     put:
       operationId: updateBuilding
-      summary: Update building information object.
-      description: Updates building information object.
+      summary: Update building object.
+      description: Updates building object.
       tags:
         - Buildings
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/BuildingInformation"
+              $ref: "#/components/schemas/Building"
         description: Payload
         required: true
       parameters:
@@ -706,11 +706,11 @@ paths:
             format: uuid
       responses:
         "200":
-          description: Updated Building Information
+          description: Updated Building
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/BuildingInformation"
+                $ref: "#/components/schemas/Building"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -737,8 +737,8 @@ paths:
                 $ref: "#/components/schemas/Error"
     delete:
       operationId: deleteBuilding
-      summary: Delete building information.
-      description: Deletes building information.
+      summary: Delete building.
+      description: Deletes building.
       tags:
         - Buildings
       parameters:
@@ -911,7 +911,7 @@ components:
           type: string
           description: Contact persons profession
 
-    BuildingInformation:
+    Building:
       type: object
       description: Information about the building
       required:
