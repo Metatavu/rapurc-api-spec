@@ -734,7 +734,7 @@ paths:
         - name: buildingId
           required: true
           in: path
-          description: building Id
+          description: Building Id
           schema:
             type: string
             format: uuid
