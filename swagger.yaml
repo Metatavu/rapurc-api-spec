@@ -914,9 +914,9 @@ components:
         buildingId:
           type: string
           description: Building id
-        buildingType:
+        classificationCode:
           type: string
-          description: Building type
+          description: Official building classification code. Classification code refers to https://data.stat.fi/api/classifications/v2/classifications/rakennus_1_20180712/classificationItems?content=data&meta=max&lang=fi
         constructionYear:
           type: integer
           format: int32
