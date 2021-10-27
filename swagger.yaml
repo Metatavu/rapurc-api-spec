@@ -266,6 +266,256 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/owners:
+    get:
+      operationId: listOwnerInformation
+      summary: List owner information.
+      description: Lists owner information.
+      tags:
+        - Owners
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of owner information data of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createOwnerInformation
+      summary: Create a new owner information object.
+      description: Creates a new owner information object.
+      tags:
+        - Owners
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OwnerInformation"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Owner Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/surveys/{surveyId}/owners/{ownerId}:
+    get:
+      operationId: findOwnerInformation
+      summary: Find owner information.
+      description: Finds owner information by id.
+      tags:
+        - Owners
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: ownerId
+          required: true
+          in: path
+          description: owner information id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateOwnerInformation
+      summary: Update owner information object.
+      description: Updates owner information object.
+      tags:
+        - Owners
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OwnerInformation"
+        description: Payload
+        required: true
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: ownerId
+          required: true
+          in: path
+          description: owner Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated Owner Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OwnerInformation"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteOwnerInformation
+      summary: Delete owner information.
+      description: Deletes owner information.
+      tags:
+        - Owners
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: ownerId
+          required: true
+          in: path
+          description: owner Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -327,3 +577,68 @@ components:
       enum:
         - DRAFT
         - DONE
+
+    OwnerInformation:
+      type: object
+      description: Information about the owner of the building
+      required:
+        - surveyId
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the building information object
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
+        ownerName:
+          type: string
+          description: Name of the owner
+        businessId:
+          type: string
+          description: Business ID
+        contactPerson:
+          $ref: "#/components/schemas/ContactPerson"
+        creatorId:
+          type: string
+          format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true
+
+    ContactPerson:
+      type: object
+      description: Building owner contact person object
+      properties:
+        firstName:
+          type: string
+          description: Contact persons first name
+        LastName:
+          type: string
+          description: Contact persons last name
+        phone:
+          type: string
+          description: Contact persons phone number
+        email:
+          type: string
+          format: email
+          description: Contact persons email
+        profession:
+          type: string
+          description: Contact persons profession
