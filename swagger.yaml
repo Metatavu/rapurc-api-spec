@@ -933,9 +933,9 @@ components:
         basements:
           type: number
           description: Number of basements
-        basementMaterial:
+        foundation:
           type: string
-          description: Material of basement
+          description: Material of foundation
         supportinStructure:
           type: string
           description: Supporting structure
