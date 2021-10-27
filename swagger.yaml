@@ -302,6 +302,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal server error
           content:
@@ -518,9 +524,9 @@ paths:
 
   /v1/surveys/{surveyId}/buildings:
     get:
-      operationId: listBuildingInformation
-      summary: List building information.
-      description: Lists building information.
+      operationId: listBuildings
+      summary: List buildings
+      description: Lists buildins
       tags:
         - Buildings
       parameters:
@@ -552,6 +558,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal server error
           content:
@@ -559,7 +571,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createBuildingInformation
+      operationId: createBuilding
       summary: Create a new building information object.
       description: Creates a new building information object.
       tags:
@@ -598,6 +610,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal server error
           content:
@@ -607,7 +625,7 @@ paths:
 
   /v1/surveys/{surveyId}/buildings/{buildingId}:
     get:
-      operationId: findBuildingInformation
+      operationId: findBuilding
       summary: Find building information.
       description: Finds building information by id.
       tags:
@@ -623,7 +641,7 @@ paths:
         - name: buildingId
           required: true
           in: path
-          description: Building information id
+          description: Building id
           schema:
             type: string
             format: uuid
@@ -659,7 +677,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateBuildingInformation
+      operationId: updateBuilding
       summary: Update building information object.
       description: Updates building information object.
       tags:
@@ -718,7 +736,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteBuildingInformation
+      operationId: deleteBuilding
       summary: Delete building information.
       description: Deletes building information.
       tags:
@@ -922,16 +940,20 @@ components:
           format: int32
           description: Construction year
         space:
-          type: number
+          type: integer
+          format: int32
           description: Space of the building in square meters
         volume:
-          type: number
+          type: integer
+          format: int32
           description: Volume of the building in qubic meters
         floors:
-          type: number
+          type: integer
+          format: int32
           description: Number of floors
         basements:
-          type: number
+          type: integer
+          format: int32
           description: Number of basements
         foundation:
           type: string
@@ -971,6 +993,10 @@ components:
     Address:
       type: object
       description: Address of the building
+      required:
+        - streetAddress
+        - city
+        - postCode
       properties:
         streetAddress:
           type: string
