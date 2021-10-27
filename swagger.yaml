@@ -675,7 +675,7 @@ paths:
         - name: surveyId
           required: true
           in: path
-          description: survey id
+          description: Survey id
           schema:
             type: string
             format: uuid
