@@ -623,7 +623,7 @@ paths:
         - name: buildingId
           required: true
           in: path
-          description: building information id
+          description: Building information id
           schema:
             type: string
             format: uuid
