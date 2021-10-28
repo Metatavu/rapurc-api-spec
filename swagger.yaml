@@ -54,6 +54,26 @@ paths:
           required: false
           schema:
             $ref: "#/components/schemas/SurveyStatus"
+        - name: type
+          in: query
+          description: Filter by survey type
+          required: false
+          schema:
+            $ref: "#/components/schemas/SurveyType"
+        - name: startDate
+          in: query
+          required: false
+          description: From which date onwards the search is made. Includes the given date
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          description: Until which date the search is made. Includes the given date
+          schema:
+            type: string
+            format: date
       responses:
         "200":
           description: List of surveys
@@ -818,6 +838,16 @@ components:
           readOnly: true
         status:
           $ref: "#/components/schemas/SurveyStatus"
+        type:
+          $ref: "#/components/schemas/SurveyType"
+        startDate:
+          type: string
+          format: date
+          description: Estimated start date of demolition. Accuracy is one month
+        EndDate:
+          type: string
+          format: date
+          description: Estimated end date of demolition. Accuracy is one month
         creatorId:
           type: string
           format: uuid
@@ -845,6 +875,14 @@ components:
       enum:
         - DRAFT
         - DONE
+
+    SurveyType:
+      type: string
+      description: Survey type enum
+      enum:
+        - RENOVATION
+        - PARTIAL_DEMOLITION
+        - DEMOLITION
 
     OwnerInformation:
       type: object
