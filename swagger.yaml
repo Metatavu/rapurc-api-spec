@@ -302,6 +302,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal server error
           content:
@@ -516,6 +522,268 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/buildings:
+    get:
+      operationId: listBuildings
+      summary: List buildings
+      description: Lists buildins
+      tags:
+        - Buildings
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of building information data of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Building"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createBuilding
+      summary: Create a new building object.
+      description: Creates a new building object.
+      tags:
+        - Buildings
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Building"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Building Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Building"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/surveys/{surveyId}/buildings/{buildingId}:
+    get:
+      operationId: findBuilding
+      summary: Find building.
+      description: Finds building by id.
+      tags:
+        - Buildings
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: buildingId
+          required: true
+          in: path
+          description: Building id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Building
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Building"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateBuilding
+      summary: Update building object.
+      description: Updates building object.
+      tags:
+        - Buildings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Building"
+        description: Payload
+        required: true
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: buildingId
+          required: true
+          in: path
+          description: Building Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated Building
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Building"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteBuilding
+      summary: Delete building.
+      description: Deletes building.
+      tags:
+        - Buildings
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: buildingId
+          required: true
+          in: path
+          description: Building Id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -642,3 +910,100 @@ components:
         profession:
           type: string
           description: Contact persons profession
+
+    Building:
+      type: object
+      description: Information about the building
+      required:
+        - surveyId
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Id of the building information object
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
+        propertyId:
+          type: string
+          description: Property id
+        buildingId:
+          type: string
+          description: Building id
+        classificationCode:
+          type: string
+          description: Official building classification code. Classification code refers to https://data.stat.fi/api/classifications/v2/classifications/rakennus_1_20180712/classificationItems?content=data&meta=max&lang=fi
+        constructionYear:
+          type: integer
+          format: int32
+          description: Construction year
+        space:
+          type: integer
+          format: int32
+          description: Space of the building in square meters
+        volume:
+          type: integer
+          format: int32
+          description: Volume of the building in qubic meters
+        floors:
+          type: integer
+          format: int32
+          description: Number of floors
+        basements:
+          type: integer
+          format: int32
+          description: Number of basements
+        foundation:
+          type: string
+          description: Material of foundation
+        supportingStructure:
+          type: string
+          description: Supporting structure
+        facadeMaterial:
+          type: string
+          description: Facade material
+        roofType:
+          type: string
+          description: Roof type
+        address:
+          $ref: "#/components/schemas/Address"
+        creatorId:
+          type: string
+          format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true
+
+    Address:
+      type: object
+      description: Address of the building
+      required:
+        - streetAddress
+        - city
+        - postCode
+      properties:
+        streetAddress:
+          type: string
+          description: Street address
+        city:
+          type: string
+          description: City
+        postCode:
+          type: string
+          description: Post code
