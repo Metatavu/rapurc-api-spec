@@ -958,7 +958,7 @@ components:
         foundation:
           type: string
           description: Material of foundation
-        supportinStructure:
+        supportingStructure:
           type: string
           description: Supporting structure
         facadeMaterial:
