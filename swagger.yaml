@@ -969,6 +969,11 @@ components:
           description: Roof type
         address:
           $ref: "#/components/schemas/Address"
+        otherStructures:
+          type: array
+          items:
+            $ref: "#/components/schemas/OtherStructure"
+          description: List of other structures to be demolished
         creatorId:
           type: string
           format: uuid
@@ -1007,3 +1012,17 @@ components:
         postCode:
           type: string
           description: Post code
+
+    OtherStructure:
+      type: object
+      description: Other structure to be demolished
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+          description: Structure name
+        description:
+          type: string
+          description: More detailed description
