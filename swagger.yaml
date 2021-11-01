@@ -1318,6 +1318,7 @@ components:
       required:
         - status
         - type
+        - metadata
       properties:
         id:
           type: string
@@ -1359,6 +1360,7 @@ components:
       description: Information about the owner of the building
       required:
         - surveyId
+        - metadata
       properties:
         id:
           type: string
@@ -1406,6 +1408,7 @@ components:
       description: Information about the building
       required:
         - surveyId
+        - metadata
       properties:
         id:
           type: string
