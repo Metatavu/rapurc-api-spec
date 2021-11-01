@@ -804,6 +804,493 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/surveyReusables:
+    get:
+      operationId: listSurveyReusables
+      summary: List reusable construction material from survey
+      description: Lists reusable construction material from survey
+      tags:
+        - SurveyReusables
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of reusable construction material of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Reusable"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createSurveyReusable
+      summary: Create a new reusable construction material object.
+      description: Creates a new reusable construction material object.
+      tags:
+        - SurveyReusables
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Reusable"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Reusable Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reusable"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/surveys/{surveyId}/surveyReusables/{surveyReusableId}:
+    get:
+      operationId: findSurveyReusable
+      summary: Find reusable.
+      description: Finds reusable construction material by id.
+      tags:
+        - SurveyReusables
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: surveyReusableId
+          required: true
+          in: path
+          description: Survey reusable id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found survey reusable object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reusable"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateSurveyReusable
+      summary: Update reusable construction material object.
+      description: Updates reusable construction material object.
+      tags:
+        - SurveyReusables
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Reusable"
+        description: Payload
+        required: true
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: surveyReusableId
+          required: true
+          in: path
+          description: Survey reusable id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated survey reusable construction material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reusable"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteSurveyReusable
+      summary: Delete reusable construction material from survey
+      description: Deletes reusable construction material from survey
+      tags:
+        - SurveyReusables
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: surveyReusableId
+          required: true
+          in: path
+          description: Survey reusable id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/reusableMaterials:
+    get:
+      operationId: list reusable materials
+      summary: List reusable materials
+      description: Lists reusable material
+      tags:
+        - ReusableMaterial
+      responses:
+        "200":
+          description: List of reusable material
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReusableMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createReusableMaterial
+      summary: Create a new reusable material.
+      description: Creates a new reusable material.
+      tags:
+        - ReusableMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReusableMaterial"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created reusable material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReusableMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/reusableMaterials/{reusableMaterialId}:
+    get:
+      operationId: findReusableMaterial
+      summary: Find reusable material.
+      description: Finds reusable material by id.
+      tags:
+        - ReusableMaterial
+      parameters:
+        - name: reusableMaterialId
+          required: true
+          in: path
+          description: Reusable material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found reusable material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReusableMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateReusableMaterial
+      summary: Update reusable material object.
+      description: Updates reusable material object.
+      tags:
+        - ReusableMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReusableMaterial"
+        description: Payload
+        required: true
+      parameters:
+        - name: reusableMaterialId
+          required: true
+          in: path
+          description: Reusable material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated reusable material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReusableMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteReusableMaterial
+      summary: Delete reusable material.
+      description: Deletes reusable material.
+      tags:
+        - ReusableMaterial
+      parameters:
+        - name: reusableMaterialId
+          required: true
+          in: path
+          description: Reusable material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -848,26 +1335,8 @@ components:
           type: string
           format: date
           description: Estimated end date of demolition. Accuracy is one month
-        creatorId:
-          type: string
-          format: uuid
-          description: ID of creator
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          description: Id of last modifier
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
+        metadata:
+          $ref: "#/components/schemas/Metadata"
 
     SurveyStatus:
       type: string
@@ -907,26 +1376,8 @@ components:
           description: Business ID
         contactPerson:
           $ref: "#/components/schemas/ContactPerson"
-        creatorId:
-          type: string
-          format: uuid
-          description: ID of creator
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          description: Id of last modifier
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
+        metadata:
+          $ref: "#/components/schemas/Metadata"
 
     ContactPerson:
       type: object
@@ -1012,26 +1463,8 @@ components:
           items:
             $ref: "#/components/schemas/OtherStructure"
           description: List of other structures to be demolished
-        creatorId:
-          type: string
-          format: uuid
-          description: ID of creator
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          description: Created date
-          readOnly: true
-        lastModifierId:
-          type: string
-          format: uuid
-          description: Id of last modifier
-          readOnly: true
-        modifiedAt:
-          type: string
-          format: date-time
-          description: Date modified
-          readOnly: true
+        metadata:
+          $ref: "#/components/schemas/Metadata"
 
     Address:
       type: object
@@ -1064,3 +1497,103 @@ components:
         description:
           type: string
           description: More detailed description
+
+    ReusableMaterial:
+      type: object
+      description: Reusable material object
+      required:
+        - name
+        - type
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Material name
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    Usability:
+      type: string
+      description: Usability enum
+      enum:
+        - EXCELLENT
+        - GOOD
+        - POOR
+        - NOT_VALIDATED
+
+    Unit:
+      type: string
+      description: Unit enum
+      enum:
+        - KG
+        - M2
+        - M3
+        - PCS
+        - RM
+        - TN
+
+    Reusable:
+      type: object
+      description: Reusable construction material object
+      required:
+        - componentName
+        - reusableMaterialId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        componentName:
+          type: string
+          description: Name of the building component
+        reusableMaterialId:
+          type: string
+          format: uuid
+          description: Reusable material ID
+        usability:
+          $ref: "#/components/schemas/Usability"
+        amount:
+          type: number
+          format: double
+          description: Amount of reusable material
+        unit:
+          $ref: "#/components/schemas/Unit"
+        description:
+          type: string
+          description: More detailed description of the reusable material
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+            description: Image uri
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    Metadata:
+      type: object
+      description: Metadata object
+      properties:
+        creatorId:
+          type: string
+          format: uuid
+          description: ID of creator
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          description: Created date
+          readOnly: true
+        lastModifierId:
+          type: string
+          format: uuid
+          description: Id of last modifier
+          readOnly: true
+        modifiedAt:
+          type: string
+          format: date-time
+          description: Date modified
+          readOnly: true
