@@ -1291,7 +1291,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/EWCCategories:
+  /v1/wasteCategories:
     get:
       operationId: listEWCCategories
       summary: List EWC categories
@@ -2064,7 +2064,7 @@ components:
         name:
           type: string
           description: Category name
-        code:
+        ewcCode:
           type: string
           description: First four characters of EWC code
           example: 1701
@@ -2076,8 +2076,8 @@ components:
       description: Waste material object
       required:
         - name
-        - EWCCategoryId
-        - EWCCode
+        - wasteCategoryId
+        - ewcSpecificationCode
         - metadata
       properties:
         id:
@@ -2087,11 +2087,11 @@ components:
         name:
           type: string
           description: Material name
-        EWCCategoryId:
+        wasteCategoryId:
           type: string
           format: uuid
           description: EWC (European Waste Code) category ID
-        codeSpecification:
+        ewcSpecificationCode:
           type: string
           description: Last two characters of EWC (European Waste Code) code
           example: 01
