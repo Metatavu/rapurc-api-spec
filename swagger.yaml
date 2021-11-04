@@ -1291,6 +1291,456 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/EWCCategories:
+    get:
+      operationId: listEWCCategories
+      summary: List EWC categories
+      description: Lists EWC categories. Results are in alphabetical order
+      tags:
+        - EWCCategory
+      responses:
+        "200":
+          description: List of EWC categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EWCCategory"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createEWCCategory
+      summary: Create a new EWC category.
+      description: Creates a new EWC category.
+      tags:
+        - EWCCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EWCCategory"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created EWC category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EWCCategory"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/EWCCategories/{EWCCategoryId}:
+    get:
+      operationId: findEWCCategory
+      summary: Find EWC category.
+      description: Finds EWC category by id.
+      tags:
+        - EWCCategory
+      parameters:
+        - name: EWCCategoryId
+          required: true
+          in: path
+          description: EWC category ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found EWC category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EWCCategory"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateEWCCategory
+      summary: Update EWC category object.
+      description: Updates EWC category object.
+      tags:
+        - EWCCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EWCCategory"
+        description: Payload
+        required: true
+      parameters:
+        - name: EWCCategoryId
+          required: true
+          in: path
+          description: EWC category ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated EWC category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EWCCategory"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteEWCCategory
+      summary: Delete EWC category.
+      description: Deletes EWC category.
+      tags:
+        - EWCCategory
+      parameters:
+        - name: EWCCategoryId
+          required: true
+          in: path
+          description: EWC category ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/wasteMaterials:
+    get:
+      operationId: listWasteMaterials
+      summary: List waste materials
+      description: Lists waste material. Results are in alphabetical order
+      tags:
+        - WasteMaterial
+      responses:
+        "200":
+          description: List of waste material
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WasteMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createWasteMaterial
+      summary: Create a new waste material.
+      description: Creates a new waste material.
+      tags:
+        - WasteMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WasteMaterial"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created waste material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/wasteMaterials/{wasteMaterialId}:
+    get:
+      operationId: findWasteMaterial
+      summary: Find waste material.
+      description: Finds waste material by id.
+      tags:
+        - WasteMaterial
+      parameters:
+        - name: wasteMaterialId
+          required: true
+          in: path
+          description: Waste material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found waste material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateWasteMaterial
+      summary: Update waste material object.
+      description: Updates waste material object.
+      tags:
+        - WasteMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WasteMaterial"
+        description: Payload
+        required: true
+      parameters:
+        - name: wasteMaterialId
+          required: true
+          in: path
+          description: Waste material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated waste material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteWasteMaterial
+      summary: Delete waste material.
+      description: Deletes waste material.
+      tags:
+        - WasteMaterial
+      parameters:
+        - name: wasteMaterialId
+          required: true
+          in: path
+          description: Waste material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1602,3 +2052,48 @@ components:
           format: date-time
           description: Date modified
           readOnly: true
+
+    EWCCategory:
+      type: object
+      description: EWC (European Waste Code) category object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Category name
+        code:
+          type: string
+          description: First four characters of EWC code
+          example: 1701
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    WasteMaterial:
+      type: object
+      description: Waste material object
+      required:
+        - name
+        - EWCCategoryId
+        - EWCCode
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Material name
+        EWCCategoryId:
+          type: string
+          format: uuid
+          description: EWC (European Waste Code) category ID
+        codeSpecification:
+          type: string
+          description: Last two characters of EWC (European Waste Code) code
+          example: 01
+        metadata:
+          $ref: "#/components/schemas/Metadata"
