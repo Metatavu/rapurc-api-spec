@@ -1293,20 +1293,20 @@ paths:
 
   /v1/wasteCategories:
     get:
-      operationId: listEWCCategories
-      summary: List EWC categories
-      description: Lists EWC categories. Results are in alphabetical order
+      operationId: listWasteCategories
+      summary: List waste categories
+      description: Lists waste categories. Results are in alphabetical order
       tags:
-        - EWCCategory
+        - WasteCategory
       responses:
         "200":
-          description: List of EWC categories
+          description: List of waste categories
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/EWCCategory"
+                  $ref: "#/components/schemas/WasteCategory"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1332,25 +1332,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createEWCCategory
-      summary: Create a new EWC category.
-      description: Creates a new EWC category.
+      operationId: createWasteCategory
+      summary: Create a new waste category.
+      description: Creates a new waste category.
       tags:
-        - EWCCategory
+        - WasteCategory
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EWCCategory"
+              $ref: "#/components/schemas/WasteCategory"
         description: Payload
         required: true
       responses:
         "200":
-          description: Created EWC category
+          description: Created waste category
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EWCCategory"
+                $ref: "#/components/schemas/WasteCategory"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1376,28 +1376,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/EWCCategories/{EWCCategoryId}:
+  /v1/WasteCategories/{WasteCategoryId}:
     get:
-      operationId: findEWCCategory
-      summary: Find EWC category.
-      description: Finds EWC category by id.
+      operationId: findWasteCategory
+      summary: Find waste category.
+      description: Finds waste category by id.
       tags:
-        - EWCCategory
+        - WasteCategory
       parameters:
-        - name: EWCCategoryId
+        - name: WasteCategoryId
           required: true
           in: path
-          description: EWC category ID
+          description: waste category ID
           schema:
             type: string
             format: uuid
       responses:
         "200":
-          description: Found EWC category
+          description: Found waste category
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EWCCategory"
+                $ref: "#/components/schemas/WasteCategory"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1423,20 +1423,20 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateEWCCategory
-      summary: Update EWC category object.
-      description: Updates EWC category object.
+      operationId: updateWasteCategory
+      summary: Update waste category object.
+      description: Updates waste category object.
       tags:
-        - EWCCategory
+        - WasteCategory
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EWCCategory"
+              $ref: "#/components/schemas/WasteCategory"
         description: Payload
         required: true
       parameters:
-        - name: EWCCategoryId
+        - name: WasteCategoryId
           required: true
           in: path
           description: EWC category ID
@@ -1445,11 +1445,11 @@ paths:
             format: uuid
       responses:
         "200":
-          description: Updated EWC category
+          description: Updated waste category
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/EWCCategory"
+                $ref: "#/components/schemas/WasteCategory"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1475,16 +1475,16 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteEWCCategory
-      summary: Delete EWC category.
-      description: Deletes EWC category.
+      operationId: deleteWasteCategory
+      summary: Delete waste category.
+      description: Deletes waste category.
       tags:
-        - EWCCategory
+        - WasteCategory
       parameters:
-        - name: EWCCategoryId
+        - name: WasteCategoryId
           required: true
           in: path
-          description: EWC category ID
+          description: Waste category ID
           schema:
             type: string
             format: uuid
@@ -2053,9 +2053,13 @@ components:
           description: Date modified
           readOnly: true
 
-    EWCCategory:
+    WasteCategory:
       type: object
       description: EWC (European Waste Code) category object
+      required:
+        - name
+        - ewcCode
+        - metadata
       properties:
         id:
           type: string
