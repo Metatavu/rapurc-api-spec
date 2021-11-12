@@ -146,7 +146,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  "/v1/surveys/{surveyId}":
+  /v1/surveys/{surveyId}:
     get:
       operationId: findSurvey
       summary: Find a survey.
@@ -1066,6 +1066,268 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/wastes:
+    get:
+      operationId: listSurveyWastes
+      summary: List waste construction material from survey
+      description: Lists waste construction material from survey
+      tags:
+        - SurveyWastes
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of waste construction material of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Waste"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createSurveyWaste
+      summary: Create a new waste construction material object.
+      description: Creates a new waste construction material object.
+      tags:
+        - SurveyWastes
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Waste"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Waste Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Waste"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/surveys/{surveyId}/wastes/{wasteId}:
+    get:
+      operationId: findSurveyWaste
+      summary: Find waste.
+      description: Finds waste construction material by id.
+      tags:
+        - SurveyWastes
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: wasteId
+          required: true
+          in: path
+          description: Waste id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found survey waste object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Waste"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateSurveyWaste
+      summary: Update waste construction material object.
+      description: Updates waste construction material object.
+      tags:
+        - SurveyWastes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Waste"
+        description: Payload
+        required: true
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: wasteId
+          required: true
+          in: path
+          description: Waste id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated survey waste construction material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Waste"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteSurveyWaste
+      summary: Delete waste construction material from survey
+      description: Deletes waste construction material from survey
+      tags:
+        - SurveyWastes
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: wasteId
+          required: true
+          in: path
+          description: Waste id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/reusableMaterials:
     get:
       operationId: list reusable materials
@@ -1741,6 +2003,225 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/usages:
+    get:
+      operationId: listUsages
+      summary: List usages.
+      description: Lists usages.
+      tags:
+        - Usages
+      responses:
+        "200":
+          description: List of usages in alphabetical order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Usage"
+          headers:
+            X-Total-Count:
+              schema:
+                type: integer
+                format: int64
+              description: Total count of usages with given filters.
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createUsage
+      summary: Create a usage.
+      description: Creates a new usage.
+      tags:
+        - Usages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usage"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/usages/{usageId}:
+    get:
+      operationId: findUsage
+      summary: Find a usage.
+      description: Finds a usage by id.
+      tags:
+        - Usages
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateUsage
+      summary: Update a usage.
+      description: Updates a usage
+      tags:
+        - Usages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usage"
+        description: Payload
+        required: true
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteUsage
+      summary: Delete a usage.
+      description: Deletes a usage.
+      tags:
+        - Usages
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -2099,5 +2580,54 @@ components:
           type: string
           description: Last two characters of EWC (European Waste Code) code
           example: 01
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    Usage:
+      type: object
+      description: Waste usage object
+      required:
+        - componentName
+        - reusableMaterialId
+        - usability
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Usage name
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    Waste:
+      type: object
+      description: Waste construction material object
+      required:
+        - componentName
+        - reusableMaterialId
+        - usability
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        wasteMaterialId:
+          type: string
+          format: uuid
+          description: Waste material ID
+        usageId:
+          type: string
+          format: uuid
+          description: Usage ID
+        amount:
+          type: number
+          format: double
+          description: Amount of reusable material (tons)
+        description:
+          type: string
+          description: More detailed description of the reusable material
+
         metadata:
           $ref: "#/components/schemas/Metadata"
