@@ -2222,6 +2222,450 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/wasteSpecifiers:
+    get:
+      operationId: listWasteSpecifiers
+      summary: List waste specifiers.
+      description: Lists waste specifiers.
+      tags:
+        - WasteSpecifiers
+      responses:
+        "200":
+          description: List of waste specifiers in alphabetical order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WasteSpecifier"
+          headers:
+            X-Total-Count:
+              schema:
+                type: integer
+                format: int64
+              description: Total count of waste specifiers with given filters.
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createWasteSpecifier
+      summary: Create a waste specifiers.
+      description: Creates a new waste specifiers.
+      tags:
+        - WasteSpecifiers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WasteSpecifier"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created WasteSpecifier
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteSpecifier"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/wasteSpecifiers/{wasteSpecifierId}:
+    get:
+      operationId: findWasteSpecifier
+      summary: Find a waste specifiers.
+      description: Finds a waste specifiers by id.
+      tags:
+        - WasteSpecifiers
+      parameters:
+        - name: wasteSpecifierId
+          required: true
+          in: path
+          description: waste specifier id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: WasteSpecifier
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteSpecifier"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateWasteSpecifier
+      summary: Update a waste specifiers.
+      description: Updates a waste specifiers
+      tags:
+        - WasteSpecifiers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WasteSpecifier"
+        description: Payload
+        required: true
+      parameters:
+        - name: wasteSpecifierId
+          required: true
+          in: path
+          description: waste specifiers id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated WasteSpecifier
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WasteSpecifier"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteWasteSpecifier
+      summary: Delete a waste specifiers.
+      description: Deletes a waste specifiers.
+      tags:
+        - WasteSpecifiers
+      parameters:
+        - name: wasteSpecifierId
+          required: true
+          in: path
+          description: waste specifiers id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/hazardousMaterials:
+    get:
+      operationId: listHazardousMaterials
+      summary: List hazardous materials
+      description: Lists hazardous material. Results are in alphabetical order
+      tags:
+        - HazardousMaterial
+      responses:
+        "200":
+          description: List of hazardous material in alphabetical order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HazardousMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createHazardousMaterial
+      summary: Create a new hazardous material.
+      description: Creates a new hazardous material.
+      tags:
+        - HazardousMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HazardousMaterial"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created hazardous material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HazardousMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/hazardousMaterials/{hazardousMaterialId}:
+    get:
+      operationId: findHazardousMaterial
+      summary: Find hazardous material.
+      description: Finds hazardous material by id.
+      tags:
+        - HazardousMaterial
+      parameters:
+        - name: hazardousMaterialId
+          required: true
+          in: path
+          description: Hazardous material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found hazardous material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HazardousMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateHazardousMaterial
+      summary: Update hazardous material object.
+      description: Updates hazardous material object.
+      tags:
+        - HazardousMaterial
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HazardousMaterial"
+        description: Payload
+        required: true
+      parameters:
+        - name: hazardousMaterialId
+          required: true
+          in: path
+          description: Hazardous material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated hazardous material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HazardousMaterial"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteHazardousMaterial
+      summary: Delete hazardous material.
+      description: Deletes hazardous material.
+      tags:
+        - HazardousMaterial
+      parameters:
+        - name: hazardousMaterialId
+          required: true
+          in: path
+          description: Hazardous material ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -2629,5 +3073,49 @@ components:
         description:
           type: string
           description: More detailed description of the waste material
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    WasteSpecifier:
+      type: object
+      description: Waste specifier object
+      required:
+        - name
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Specifier name
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    HazardousMaterial:
+      type: object
+      description: Hazardous material object
+      required:
+        - name
+        - wasteCategoryId
+        - ewcSpecificationCode
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Material name
+        wasteCategoryId:
+          type: string
+          format: uuid
+          description: EWC (European Waste Code) category ID
+        ewcSpecificationCode:
+          type: string
+          description: Last two characters of EWC (European Waste Code) code
+          example: 01
         metadata:
           $ref: "#/components/schemas/Metadata"
