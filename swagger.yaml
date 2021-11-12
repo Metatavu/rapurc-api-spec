@@ -1328,13 +1328,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/surveys/{surveyId}/hazards:
+  /v1/surveys/{surveyId}/hazardousWastes:
     get:
-      operationId: listSurveyHazards
-      summary: List hazard construction material from survey
-      description: Lists hazard construction material from survey
+      operationId: listSurveyHazardousWastes
+      summary: List hazardous waste construction material from survey
+      description: Lists hazardous waste construction material from survey
       tags:
-        - SurveyHazards
+        - SurveyHazardousWastes
       parameters:
         - name: surveyId
           in: path
@@ -1345,13 +1345,13 @@ paths:
             format: uuid
       responses:
         "200":
-          description: List of hazard construction material of the survey
+          description: List of hazardous waste construction material of the survey
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Hazard"
+                  $ref: "#/components/schemas/HazardousWaste"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1377,11 +1377,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     post:
-      operationId: createSurveyHazard
-      summary: Create a new hazard construction material object.
-      description: Creates a new hazard construction material object.
+      operationId: createSurveyHazardousWaste
+      summary: Create a new hazardous waste construction material object.
+      description: Creates a new hazardous waste construction material object.
       tags:
-        - SurveyHazards
+        - SurveyHazardousWastes
       parameters:
         - name: surveyId
           in: path
@@ -1394,16 +1394,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Hazard"
+              $ref: "#/components/schemas/HazardousWaste"
         description: Payload
         required: true
       responses:
         "200":
-          description: Created Hazard Information
+          description: Created HazardousWaste Information
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Hazard"
+                $ref: "#/components/schemas/HazardousWaste"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1429,13 +1429,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
-  /v1/surveys/{surveyId}/hazards/{hazardId}:
+  /v1/surveys/{surveyId}/hazardousWastes/{hazardousWasteId}:
     get:
-      operationId: findSurveyHazard
-      summary: Find hazard.
-      description: Finds hazard construction material by id.
+      operationId: findSurveyHazardousWaste
+      summary: Find hazardous waste.
+      description: Finds hazardous waste construction material by id.
       tags:
-        - SurveyHazards
+        - SurveyHazardousWastes
       parameters:
         - name: surveyId
           required: true
@@ -1444,20 +1444,20 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: hazardId
+        - name: hazardousWasteId
           required: true
           in: path
-          description: Hazard id
+          description: Hazardous waste id
           schema:
             type: string
             format: uuid
       responses:
         "200":
-          description: Found survey hazard object
+          description: Found survey hazardous waste object
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Hazard"
+                $ref: "#/components/schemas/HazardousWaste"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1483,16 +1483,16 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     put:
-      operationId: updateSurveyHazard
-      summary: Update hazard construction material object.
-      description: Updates hazard construction material object.
+      operationId: updateSurveyHazardousWaste
+      summary: Update hazardousWaste construction material object.
+      description: Updates hazardousWaste construction material object.
       tags:
-        - SurveyHazards
+        - SurveyHazardousWastes
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Hazard"
+              $ref: "#/components/schemas/HazardousWaste"
         description: Payload
         required: true
       parameters:
@@ -1503,20 +1503,20 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: hazardId
+        - name: hazardousWasteId
           required: true
           in: path
-          description: Hazard id
+          description: Hazardous waste id
           schema:
             type: string
             format: uuid
       responses:
         "200":
-          description: Updated survey hazard construction material
+          description: Updated survey hazardousWaste construction material
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Hazard"
+                $ref: "#/components/schemas/HazardousWaste"
         "400":
           description: Invalid request was sent to the server
           content:
@@ -1542,11 +1542,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
     delete:
-      operationId: deleteSurveyHazard
-      summary: Delete hazard construction material from survey
-      description: Deletes hazard construction material from survey
+      operationId: deleteSurveyHazardousWaste
+      summary: Delete hazardous waste construction material from survey
+      description: Deletes hazardous waste construction material from survey
       tags:
-        - SurveyHazards
+        - SurveyHazardousWastes
       parameters:
         - name: surveyId
           required: true
@@ -1555,10 +1555,10 @@ paths:
           schema:
             type: string
             format: uuid
-        - name: hazardId
+        - name: hazardousWasteId
           required: true
           in: path
-          description: Hazard id
+          description: Hazardous waste id
           schema:
             type: string
             format: uuid
@@ -3382,11 +3382,11 @@ components:
         metadata:
           $ref: "#/components/schemas/Metadata"
 
-    Hazard:
+    HazardousWaste:
       type: object
-      description: Hazard construction material object
+      description: Hazardous construction material object
       required:
-        - HazardousMaterialId
+        - hazardousMaterialId
         - wasteSpecifierId
         - amount
         - metadata
@@ -3395,7 +3395,7 @@ components:
           type: string
           format: uuid
           readOnly: true
-        HazardousMaterialId:
+        hazardousMaterialId:
           type: string
           format: uuid
           description: Hazardous material ID
