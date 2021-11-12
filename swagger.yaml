@@ -2628,6 +2628,5 @@ components:
         description:
           type: string
           description: More detailed description of the reusable material
-
         metadata:
           $ref: "#/components/schemas/Metadata"
