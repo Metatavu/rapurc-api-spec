@@ -2628,6 +2628,6 @@ components:
           description: Amount of waste material (tons)
         description:
           type: string
-          description: More detailed description of the reusable material
+          description: More detailed description of the waste material
         metadata:
           $ref: "#/components/schemas/Metadata"
