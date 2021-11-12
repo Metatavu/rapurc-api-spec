@@ -2625,7 +2625,7 @@ components:
         amount:
           type: number
           format: double
-          description: Amount of reusable material (tons)
+          description: Amount of waste material (tons)
         description:
           type: string
           description: More detailed description of the reusable material
