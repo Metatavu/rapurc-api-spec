@@ -2477,6 +2477,7 @@ components:
         - componentName
         - reusableMaterialId
         - usability
+        - metadata
       properties:
         id:
           type: string
@@ -2587,9 +2588,8 @@ components:
       type: object
       description: Waste usage object
       required:
-        - componentName
-        - reusableMaterialId
-        - usability
+        - name
+        - metadata
       properties:
         id:
           type: string
@@ -2605,9 +2605,10 @@ components:
       type: object
       description: Waste construction material object
       required:
-        - componentName
-        - reusableMaterialId
-        - usability
+        - wasteMaterialId
+        - usageId
+        - amount
+        - metadata
       properties:
         id:
           type: string
