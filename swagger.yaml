@@ -1590,6 +1590,444 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/buildingTypes:
+    get:
+      operationId: listBuildingTypes
+      summary: List building types.
+      description: Lists building types.
+      tags:
+        - BuildingTypes
+      responses:
+        "200":
+          description: List of building types in alphabetical order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BuildingType"
+          headers:
+            X-Total-Count:
+              schema:
+                type: integer
+                format: int64
+              description: Total count of building types with given filters.
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createBuildingType
+      summary: Create a building type.
+      description: Creates a new building type.
+      tags:
+        - BuildingTypes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BuildingType"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created building type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuildingType"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/buildingTypes/{buildingTypeId}:
+    get:
+      operationId: findBuildingType
+      summary: Find a building type.
+      description: Finds a building type by id.
+      tags:
+        - BuildingTypes
+      parameters:
+        - name: buildingTypeId
+          required: true
+          in: path
+          description: Building type id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: buildingType
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuildingType"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateBuildingType
+      summary: Update a building type.
+      description: Updates a building type
+      tags:
+        - BuildingTypes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BuildingType"
+        description: Payload
+        required: true
+      parameters:
+        - name: buildingTypeId
+          required: true
+          in: path
+          description: Building type id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated building type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuildingType"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteBuildingType
+      summary: Delete a building type.
+      description: Deletes a building type.
+      tags:
+        - BuildingTypes
+      parameters:
+        - name: buildingTypeId
+          required: true
+          in: path
+          description: Building type id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/usages:
+    get:
+      operationId: listUsages
+      summary: List usages.
+      description: Lists usages.
+      tags:
+        - Usages
+      responses:
+        "200":
+          description: List of usages in alphabetical order
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Usage"
+          headers:
+            X-Total-Count:
+              schema:
+                type: integer
+                format: int64
+              description: Total count of usages with given filters.
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createUsage
+      summary: Create a usage.
+      description: Creates a new usage.
+      tags:
+        - Usages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usage"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/usages/{usageId}:
+    get:
+      operationId: findUsage
+      summary: Find a usage.
+      description: Finds a usage by id.
+      tags:
+        - Usages
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateUsage
+      summary: Update a usage.
+      description: Updates a usage
+      tags:
+        - Usages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usage"
+        description: Payload
+        required: true
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated Usage
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usage"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteUsage
+      summary: Delete a usage.
+      description: Deletes a usage.
+      tags:
+        - Usages
+      parameters:
+        - name: usageId
+          required: true
+          in: path
+          description: usage id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/reusableMaterials:
     get:
       operationId: list reusable materials
@@ -2234,225 +2672,6 @@ paths:
           required: true
           in: path
           description: Waste material ID
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "204":
-          description: Success
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /v1/usages:
-    get:
-      operationId: listUsages
-      summary: List usages.
-      description: Lists usages.
-      tags:
-        - Usages
-      responses:
-        "200":
-          description: List of usages in alphabetical order
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Usage"
-          headers:
-            X-Total-Count:
-              schema:
-                type: integer
-                format: int64
-              description: Total count of usages with given filters.
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      operationId: createUsage
-      summary: Create a usage.
-      description: Creates a new usage.
-      tags:
-        - Usages
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Usage"
-        description: Payload
-        required: true
-      responses:
-        "200":
-          description: Created Usage
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usage"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-
-  /v1/usages/{usageId}:
-    get:
-      operationId: findUsage
-      summary: Find a usage.
-      description: Finds a usage by id.
-      tags:
-        - Usages
-      parameters:
-        - name: usageId
-          required: true
-          in: path
-          description: usage id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: Usage
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usage"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    put:
-      operationId: updateUsage
-      summary: Update a usage.
-      description: Updates a usage
-      tags:
-        - Usages
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Usage"
-        description: Payload
-        required: true
-      parameters:
-        - name: usageId
-          required: true
-          in: path
-          description: usage id
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: Updated Usage
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usage"
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    delete:
-      operationId: deleteUsage
-      summary: Delete a usage.
-      description: Deletes a usage.
-      tags:
-        - Usages
-      parameters:
-        - name: usageId
-          required: true
-          in: path
-          description: usage id
           schema:
             type: string
             format: uuid
@@ -3287,6 +3506,27 @@ components:
           type: string
           description: Last two characters of EWC (European Waste Code) code
           example: 01
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    BuildingType:
+      type: object
+      description: Building type object
+      required:
+        - name
+        - code
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Type name
+        code:
+          type: string
+          description: Building type code
         metadata:
           $ref: "#/components/schemas/Metadata"
 
