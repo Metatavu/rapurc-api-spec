@@ -3433,6 +3433,10 @@ components:
             type: string
             format: uri
             description: Image uri
+        amountAsWaste:
+          type: number
+          format: double
+          description: Amount of waste
         metadata:
           $ref: "#/components/schemas/Metadata"
 
