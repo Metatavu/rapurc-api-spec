@@ -3933,6 +3933,10 @@ components:
           type: string
           format: uuid
           readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Id of the survey
         firstName:
           type: string
           description: Surveyor first name
