@@ -3924,7 +3924,6 @@ components:
       type: object
       description: Surveyor object
       required:
-        - surveyId
         - firstName
         - lastName
         - company
