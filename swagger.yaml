@@ -1590,6 +1590,268 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/attachments:
+    get:
+      operationId: listSurveyAttachments
+      summary: List attachments from survey
+      description: Lists attachments from survey
+      tags:
+        - SurveyAttachments
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of attachments of the survey
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Attachment"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createSurveyAttachment
+      summary: Create a new attachment object.
+      description: Creates a new attachment object.
+      tags:
+        - SurveyAttachments
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Attachment"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created Attachment Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/surveys/{surveyId}/attachments/{attachmentId}:
+    get:
+      operationId: findSurveyAttachment
+      summary: Find attachment.
+      description: Finds attachment by id.
+      tags:
+        - SurveyAttachments
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: survey id
+          schema:
+            type: string
+            format: uuid
+        - name: attachmentId
+          required: true
+          in: path
+          description: Attachment id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found survey attachment object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateSurveyAttachment
+      summary: Update attachment object.
+      description: Updates attachment object.
+      tags:
+        - SurveyAttachments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Attachment"
+        description: Payload
+        required: true
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: attachmentId
+          required: true
+          in: path
+          description: Attachment id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated survey attachment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteSurveyAttachment
+      summary: Delete attachment from survey
+      description: Deletes attachment from survey
+      tags:
+        - SurveyAttachments
+      parameters:
+        - name: surveyId
+          required: true
+          in: path
+          description: Survey id
+          schema:
+            type: string
+            format: uuid
+        - name: attachmentId
+          required: true
+          in: path
+          description: Attachment id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "400":
+          description: Invalid request was sent to the server
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "403":
+          description: Attempted to make a call with unauthorized client
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/buildingTypes:
     get:
       operationId: listBuildingTypes
@@ -3962,3 +4224,30 @@ components:
           description: Report date
         metadata:
           $ref: "#/components/schemas/Metadata"
+
+    Attachment:
+      type: object
+      description: Attachment object
+      required:
+        - url
+        - surveyId
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        surveyId:
+          type: string
+          format: uuid
+          description: Survey ID
+        url:
+          type: string
+          format: uri
+          description: URL of the attachment
+        name:
+          type: string
+          description: Name of the attachement
+        description:
+          type: string
+          description: Optional description of the attachment
