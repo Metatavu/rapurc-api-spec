@@ -4230,7 +4230,6 @@ components:
       description: Attachment object
       required:
         - url
-        - surveyId
         - name
       properties:
         id:
