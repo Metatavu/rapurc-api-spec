@@ -3822,8 +3822,7 @@ components:
           format: int32
           description: Volume of the building in qubic meters
         floors:
-          type: integer
-          format: int32
+          type: string
           description: Number of floors
         basements:
           type: integer
@@ -4156,7 +4155,6 @@ components:
       description: Hazardous construction material object
       required:
         - hazardousMaterialId
-        - wasteSpecifierId
         - amount
         - metadata
       properties:
