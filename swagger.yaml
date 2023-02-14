@@ -3894,7 +3894,7 @@ components:
           format: uuid
           readOnly: true
         name:
-          $ref: "#/components/schemas/LocalizedName"
+          type: string
           description: Material name
         metadata:
           $ref: "#/components/schemas/Metadata"
@@ -4024,7 +4024,7 @@ components:
           format: uuid
           readOnly: true
         name:
-          $ref: "#/components/schemas/LocalizedName"
+          type: string
           description: Material name
         wasteCategoryId:
           type: string
