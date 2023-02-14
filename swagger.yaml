@@ -3894,7 +3894,7 @@ components:
           format: uuid
           readOnly: true
         name:
-          type: string
+          $ref: "#/components/schemas/LocalizedName"
           description: Material name
         metadata:
           $ref: "#/components/schemas/Metadata"
@@ -4024,7 +4024,7 @@ components:
           format: uuid
           readOnly: true
         name:
-          type: string
+          $ref: "#/components/schemas/LocalizedName"
           description: Material name
         wasteCategoryId:
           type: string
@@ -4118,7 +4118,7 @@ components:
           format: uuid
           readOnly: true
         name:
-          type: string
+          $ref: "#/components/schemas/LocalizedName"
           description: Specifier name
         metadata:
           $ref: "#/components/schemas/Metadata"
@@ -4248,3 +4248,21 @@ components:
         description:
           type: string
           description: Optional description of the attachment
+
+    LocalizedName:
+      type: array
+      description: List of all localization values available
+      items:
+        $ref: "#/components/schemas/LocalizedValue"
+
+    LocalizedValue:
+      type: object
+      description: Localized value for one language
+      required:
+        - language
+        - value
+      properties:
+        language:
+          type: string
+        value:
+          type: string
