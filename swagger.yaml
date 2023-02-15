@@ -4110,16 +4110,18 @@ components:
       type: object
       description: Waste specifier object
       required:
-        - name
+        - localizedNames
         - metadata
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Specifier name
+        localizedNames:
+          type: array
+          description: Localized specifier names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         metadata:
           $ref: "#/components/schemas/Metadata"
 
@@ -4248,3 +4250,17 @@ components:
         description:
           type: string
           description: Optional description of the attachment
+
+    LocalizedValue:
+      type: object
+      description: Localized value for one language
+      required:
+        - language
+        - value
+      properties:
+        language:
+          type: string
+          maxLength: 2
+          description: language code in ISO 639-1 standard
+        value:
+          type: string
