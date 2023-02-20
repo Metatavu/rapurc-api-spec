@@ -3872,12 +3872,14 @@ components:
       type: object
       description: Other structure to be demolished
       required:
-        - name
+        - localizedNames
         - description
       properties:
-        name:
-          type: string
-          description: Structure name
+        localizedNames:
+          type: array
+          description: Localized reusable structure names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         description:
           type: string
           description: More detailed description
@@ -3886,16 +3888,18 @@ components:
       type: object
       description: Reusable material object
       required:
-        - name
+        - localizedNames
         - metadata
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Material name
+        localizedNames:
+          type: array
+          description: Localized reusable material names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         metadata:
           $ref: "#/components/schemas/Metadata"
 
@@ -3923,7 +3927,7 @@ components:
       type: object
       description: Reusable construction material object
       required:
-        - componentName
+        - buildingComponentNames
         - reusableMaterialId
         - usability
         - metadata
@@ -3932,9 +3936,11 @@ components:
           type: string
           format: uuid
           readOnly: true
-        componentName:
-          type: string
-          description: Name of the building component
+        buildingComponentNames:
+          type: array
+          description: Localized building component names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         reusableMaterialId:
           type: string
           format: uuid
@@ -3992,7 +3998,7 @@ components:
       type: object
       description: EWC (European Waste Code) category object
       required:
-        - name
+        - localizedNames
         - ewcCode
         - metadata
       properties:
@@ -4000,9 +4006,11 @@ components:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Category name
+        localizedNames:
+          type: array
+          description: Localized waste category names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         ewcCode:
           type: string
           description: First four characters of EWC code
@@ -4014,7 +4022,7 @@ components:
       type: object
       description: Waste material object
       required:
-        - name
+        - localizedNames
         - wasteCategoryId
         - ewcSpecificationCode
         - metadata
@@ -4023,9 +4031,11 @@ components:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Material name
+        localizedNames:
+          type: array
+          description: Localized material names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         wasteCategoryId:
           type: string
           format: uuid
@@ -4041,7 +4051,7 @@ components:
       type: object
       description: Building type object
       required:
-        - name
+        - localizedNames
         - code
         - metadata
       properties:
@@ -4049,9 +4059,11 @@ components:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Type name
+        localizedNames:
+          type: array
+          description: Localized building type names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         code:
           type: string
           description: Building type code
@@ -4062,16 +4074,18 @@ components:
       type: object
       description: Waste usage object
       required:
-        - name
+        - localizedNames
         - metadata
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Usage name
+        localizedNames:
+          type: array
+          description: Localized usage names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         metadata:
           $ref: "#/components/schemas/Metadata"
 
@@ -4129,7 +4143,7 @@ components:
       type: object
       description: Hazardous material object
       required:
-        - name
+        - localizedNames
         - wasteCategoryId
         - ewcSpecificationCode
         - metadata
@@ -4138,9 +4152,11 @@ components:
           type: string
           format: uuid
           readOnly: true
-        name:
-          type: string
-          description: Material name
+        localizedNames:
+          type: array
+          description: Localized hazardous material names
+          items:
+            $ref: "#/components/schemas/LocalizedValue"
         wasteCategoryId:
           type: string
           format: uuid
