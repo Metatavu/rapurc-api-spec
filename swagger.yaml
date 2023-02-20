@@ -3872,14 +3872,12 @@ components:
       type: object
       description: Other structure to be demolished
       required:
-        - localizedNames
+        - name
         - description
       properties:
-        localizedNames:
-          type: array
-          description: Localized reusable structure names
-          items:
-            $ref: "#/components/schemas/LocalizedValue"
+        name:
+          type: string
+          description: Structure name
         description:
           type: string
           description: More detailed description
