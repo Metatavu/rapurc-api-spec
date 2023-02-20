@@ -3927,7 +3927,7 @@ components:
       type: object
       description: Reusable construction material object
       required:
-        - buildingComponentNames
+        - componentName
         - reusableMaterialId
         - usability
         - metadata
@@ -3936,11 +3936,9 @@ components:
           type: string
           format: uuid
           readOnly: true
-        buildingComponentNames:
-          type: array
-          description: Localized building component names
-          items:
-            $ref: "#/components/schemas/LocalizedValue"
+        componentName:
+          type: string
+          description: Name of the building component
         reusableMaterialId:
           type: string
           format: uuid
