@@ -60,6 +60,12 @@ paths:
           required: false
           schema:
             $ref: "#/components/schemas/SurveyType"
+        - name: dateUnknown
+          in: query
+          description: Filter by survey date known status
+          required: false
+          schema:
+            type: boolean
         - name: startDate
           in: query
           required: false
