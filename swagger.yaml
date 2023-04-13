@@ -60,6 +60,12 @@ paths:
           required: false
           schema:
             $ref: "#/components/schemas/SurveyType"
+        - name: dateUnknown
+          in: query
+          description: Filter by survey date known status
+          required: false
+          schema:
+            type: boolean
         - name: startDate
           in: query
           required: false
@@ -3709,6 +3715,9 @@ components:
           $ref: "#/components/schemas/SurveyStatus"
         type:
           $ref: "#/components/schemas/SurveyType"
+        dateUnknown:
+          type: boolean
+          description: True if date of demolition is unknown
         startDate:
           type: string
           format: date
@@ -3840,6 +3849,9 @@ components:
         roofType:
           type: string
           description: Roof type
+        propertyName:
+          type: string
+          description: Name of the property
         address:
           $ref: "#/components/schemas/Address"
         otherStructures:
@@ -4234,6 +4246,9 @@ components:
           type: string
           format: date
           description: Report date
+        visits:
+          type: string
+          description: Surveying visits
         metadata:
           $ref: "#/components/schemas/Metadata"
 
