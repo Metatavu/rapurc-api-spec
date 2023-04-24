@@ -3726,6 +3726,10 @@ components:
           type: string
           format: date
           description: Estimated end date of demolition. Accuracy is one month
+        markedAsDone:
+          type: string
+          format: date-time
+          description: Time when the survey status was marked as DONE, null if survey is not in DONE state
         metadata:
           $ref: "#/components/schemas/Metadata"
 
