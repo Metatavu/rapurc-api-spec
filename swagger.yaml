@@ -3726,6 +3726,9 @@ components:
           type: string
           format: date
           description: Estimated end date of demolition. Accuracy is one month
+        additionalInformation:
+          type: string
+          description: Additional information notes
         markedAsDone:
           type: string
           format: date-time
