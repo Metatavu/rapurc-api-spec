@@ -3736,6 +3736,7 @@ components:
         creatorName:
           type: string
           description: Name of the creator of the survey
+          readOnly: true
         metadata:
           $ref: "#/components/schemas/Metadata"
 
