@@ -3733,6 +3733,9 @@ components:
           type: string
           format: date-time
           description: Time when the survey status was marked as DONE, null if survey is not in DONE state
+        creatorName:
+          type: string
+          description: Name of the creator of the survey
         metadata:
           $ref: "#/components/schemas/Metadata"
 
