@@ -3685,9 +3685,14 @@ paths:
       tags:
         - UserGroups
       parameters:
-        - name: email
+        - name: userEmail
           in: query
-          description: Email address of the user. If provided, only groups that the user is a member of will be returned.
+          description: Email address of the group member user. If provided, only groups that the user is a member of will be returned.
+          schema:
+            type: string
+        - name: adminEmail
+          in: query
+          description: Email address of the group admin user. If provided, only groups that the user can manage as admin will be returned.
           schema:
             type: string
       responses:
