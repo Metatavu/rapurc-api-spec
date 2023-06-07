@@ -4825,7 +4825,8 @@ components:
       type: string
       description: Status of group join
       enum:
-        - NOT_ACCEPTED
+        - PENDING
+        - REJECTED
         - ACCEPTED
 
     GroupJoinInvite:
