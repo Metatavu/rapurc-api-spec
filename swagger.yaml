@@ -4803,16 +4803,15 @@ components:
       description: Request of a user to join a group
       required:
         - userId
-        - groupId
+        - email
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        userId:
+        email:
           type: string
-          format: uuid
-          description: user id
+          description: user email address
         groupId:
           type: string
           format: uuid
@@ -4824,30 +4823,31 @@ components:
 
     JoinRequestStatus:
       type: string
-      description: Status of group join request
+      description: Status of group join
       enum:
-        - NOT_APPROVED
-        - APPROVED
+        - NOT_ACCEPTED
+        - ACCEPTED
 
     GroupJoinInvite:
       type: object
       description: Invitation for user to join a group
       required:
         - userId
-        - groupId
+        - email
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        userId:
+        email:
           type: string
-          format: uuid
-          description: user id
+          description: user email address
         groupId:
           type: string
           format: uuid
           description: group id
+        status:
+          $ref: "#/components/schemas/JoinRequestStatus"
         metadata:
           $ref: "#/components/schemas/Metadata"
 
