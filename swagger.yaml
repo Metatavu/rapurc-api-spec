@@ -3684,6 +3684,12 @@ paths:
       description: Lists all groups
       tags:
         - UserGroups
+      parameters:
+        - name: email
+          in: query
+          description: Email address of the user. If provided, only groups that the user is a member of will be returned.
+          schema:
+            type: string
       responses:
         "200":
           description: List of groups
