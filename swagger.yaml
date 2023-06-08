@@ -4811,16 +4811,17 @@ components:
       type: object
       description: Request of a user to join a group
       required:
-        - email
+        - userId
         - groupId
       properties:
         id:
           type: string
           format: uuid
           readOnly: true
-        email:
+        userId:
           type: string
-          description: user email address
+          format: uuid
+          description: user id
         groupId:
           type: string
           format: uuid
