@@ -4811,7 +4811,6 @@ components:
       type: object
       description: Request of a user to join a group
       required:
-        - userId
         - email
         - groupId
       properties:
@@ -4843,7 +4842,6 @@ components:
       type: object
       description: Invitation for user to join a group
       required:
-        - userId
         - email
         - groupId
       properties:
