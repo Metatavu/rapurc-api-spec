@@ -4119,7 +4119,7 @@ paths:
       summary: Delete user group join invite.
       description: Deletes user group join invite. Can be deleted by group admin only
       tags:
-        - GroupJoinRequests
+        - GroupJoinInvites
       parameters:
         - name: groupId
           required: true
