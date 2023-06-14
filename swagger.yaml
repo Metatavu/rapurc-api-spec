@@ -3811,26 +3811,8 @@ paths:
       responses:
         "204":
           description: Success
-        "400":
-          description: Invalid request was sent to the server
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "403":
-          description: Attempted to make a call with unauthorized client
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "404":
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-        "500":
-          description: Internal server error
+        "default":
+          description: Error
           content:
             application/json:
               schema:
@@ -3875,7 +3857,7 @@ paths:
     post:
       operationId: createGroupJoinRequest
       summary: Create a new group join request.
-      description: Creates a group join request.
+      description: Creates a group join request, any user can create it.
       tags:
         - GroupJoinRequests
       parameters:
@@ -4018,7 +4000,7 @@ paths:
     get:
       operationId: listGroupJoinInvites
       summary: Lists group join invites
-      description: Lists all group join invites for the group. Only admin of the group can list join invites.
+      description: Lists all group join invites for the group. Group admin and users invited to the group can list join invites.
       tags:
         - GroupJoinInvites
       parameters:
@@ -4083,7 +4065,7 @@ paths:
     get:
       operationId: findGroupJoinInvite
       summary: Find group join invite by id
-      description: Finds group join invite by id. Can be viewed by group admin only
+      description: Finds group join invite by id. Can be viewed by group admin only or invited user
       tags:
         - GroupJoinInvites
       parameters:
@@ -4104,6 +4086,47 @@ paths:
       responses:
         "200":
           description: Found join invite
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateGroupJoinInvite
+      summary: Updates group join invite
+      description: Updates group join invite. Can be updated by invited user
+      tags:
+        - GroupJoinInvites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupJoinInvite"
+        description: Payload
+        required: true
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: inviteId
+          required: true
+          in: path
+          description: User group join invite ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated group join request
           content:
             application/json:
               schema:
@@ -4844,6 +4867,7 @@ components:
       required:
         - email
         - groupId
+        - status
       properties:
         id:
           type: string
