@@ -3677,6 +3677,533 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/groups:
+    get:
+      operationId: listUserGroups
+      summary: Lists groups
+      description: Lists all groups
+      tags:
+        - UserGroups
+      parameters:
+        - name: adminEmail
+          in: query
+          description: Email address of the group admin user. If provided, only groups that the user can manage as admin will be returned.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserGroup"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createUserGroup
+      summary: Create a new group.
+      description: Creates a user group and assigns the creator as group admin.
+      tags:
+        - UserGroups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserGroup"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created user group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserGroup"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}:
+    get:
+      operationId: findUserGroup
+      summary: Find user group by id
+      description: Finds user group by id.
+      tags:
+        - UserGroups
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: User group ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found hazardous material
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserGroup"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateUserGroup
+      summary: Updates user group
+      description: Updates user group.
+      tags:
+        - UserGroups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserGroup"
+        description: Payload
+        required: true
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated user group
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserGroup"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteUserGroup
+      summary: Delete user group.
+      description: Deletes user group.
+      tags:
+        - UserGroups
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}/requests:
+    get:
+      operationId: listGroupJoinRequests
+      summary: Lists group join requests
+      description: Lists all group join requests for the group. Only admin of the group can list join requests.
+      tags:
+        - GroupJoinRequests
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: status
+          required: false
+          in: query
+          description: Status of the join request
+          schema:
+            $ref: "#/components/schemas/JoinRequestStatus"
+      responses:
+        "200":
+          description: List of group join requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupJoinRequest"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createGroupJoinRequest
+      summary: Create a new group join request.
+      description: Creates a group join request, any user can create it.
+      tags:
+        - GroupJoinRequests
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupJoinRequest"
+        description: Payload
+        required: true
+      responses:
+        "200":
+          description: Created group join request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinRequest"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}/requests/{requestId}:
+    get:
+      operationId: findGroupJoinRequest
+      summary: Find group join request by id
+      description: Finds group join request by id. Can be viewed by group admin only
+      tags:
+        - GroupJoinRequests
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: User group ID
+          schema:
+            type: string
+            format: uuid
+        - name: requestId
+          required: true
+          in: path
+          description: User group join request ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found join request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinRequest"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateGroupJoinRequest
+      summary: Updates group join request
+      description: Updates group join request. Can be updated by group admin only
+      tags:
+        - GroupJoinRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupJoinRequest"
+        description: Payload
+        required: true
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: requestId
+          required: true
+          in: path
+          description: User group join request ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated group join request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinRequest"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteGroupJoinRequest
+      summary: Delete user group join request.
+      description: Deletes user group join request. Can be deleted by group admin only
+      tags:
+        - GroupJoinRequests
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: requestId
+          required: true
+          in: path
+          description: User group join request ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}/invites:
+    get:
+      operationId: listGroupJoinInvites
+      summary: Lists group join invites
+      description: Lists all group join invites for the group. Group admin and users invited to the group can list join invites.
+      tags:
+        - GroupJoinInvites
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: List of group join invites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: createGroupJoinInvite
+      summary: Create a new group join invite.
+      description: Creates a group join invite. Can be created by group admin only
+      tags:
+        - GroupJoinInvites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupJoinInvite"
+        description: Payload
+        required: true
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Created user group join invite
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}/invites/{inviteId}:
+    get:
+      operationId: findGroupJoinInvite
+      summary: Find group join invite by id
+      description: Finds group join invite by id. Can be viewed by group admin only or invited user
+      tags:
+        - GroupJoinInvites
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: User group ID
+          schema:
+            type: string
+            format: uuid
+        - name: inviteId
+          required: true
+          in: path
+          description: User group join invite ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found join invite
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      operationId: updateGroupJoinInvite
+      summary: Updates group join invite
+      description: Updates group join invite. Can be updated by invited user
+      tags:
+        - GroupJoinInvites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupJoinInvite"
+        description: Payload
+        required: true
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: inviteId
+          required: true
+          in: path
+          description: User group join invite ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Updated group join request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      operationId: deleteGroupJoinInvite
+      summary: Delete user group join invite.
+      description: Deletes user group join invite. Can be deleted by group admin only
+      tags:
+        - GroupJoinInvites
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: Group id
+          schema:
+            type: string
+            format: uuid
+        - name: inviteId
+          required: true
+          in: path
+          description: User group join invite ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "204":
+          description: Success
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /v1/groups/{groupId}/invites/{inviteId}/sendEmail:
+    get:
+      operationId: sendGroupJoinInviteEmail
+      summary: Send group join invite email
+      description: Sends group join invite email. Can be sent by group admin only
+      tags:
+        - GroupJoinInvites
+      parameters:
+        - name: groupId
+          required: true
+          in: path
+          description: User group ID
+          schema:
+            type: string
+            format: uuid
+        - name: inviteId
+          required: true
+          in: path
+          description: User group join invite ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Found join invite
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroupJoinInvite"
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -4302,3 +4829,72 @@ components:
           description: language code in ISO 639-1 standard
         value:
           type: string
+
+    GroupJoinRequest:
+      type: object
+      description: Request of a user to join a group
+      required:
+        - email
+        - groupId
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          description: user email address
+        groupId:
+          type: string
+          format: uuid
+          description: group id
+        status:
+          $ref: "#/components/schemas/JoinRequestStatus"
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    JoinRequestStatus:
+      type: string
+      description: Status of group join
+      enum:
+        - PENDING
+        - REJECTED
+        - ACCEPTED
+
+    GroupJoinInvite:
+      type: object
+      description: Invitation for user to join a group
+      required:
+        - email
+        - groupId
+        - status
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          description: user email address
+        groupId:
+          type: string
+          format: uuid
+          description: group id
+        status:
+          $ref: "#/components/schemas/JoinRequestStatus"
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    UserGroup:
+      type: object
+      description: User group
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: group name
