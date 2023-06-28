@@ -4906,6 +4906,15 @@ components:
         email:
           type: string
           description: user email address
+        firstName:
+          type: string
+          description: user first name
+        lastName:
+          type: string
+          description: user last name
+        username:
+          type: string
+          description: user username
         groupId:
           type: string
           format: uuid
