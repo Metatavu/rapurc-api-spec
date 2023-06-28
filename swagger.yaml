@@ -4971,6 +4971,9 @@ components:
           type: string
           format: uuid
           readOnly: true
+        username:
+          type: string
+          description: username
         firstName:
           type: string
           description: first name
