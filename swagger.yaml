@@ -4253,12 +4253,8 @@ paths:
             type: string
             format: uuid
       responses:
-        "200":
-          description: Found join invite
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GroupJoinInvite"
+        "202":
+          description: Accepted
         "default":
           description: Error
           content:
