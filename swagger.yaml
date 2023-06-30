@@ -3685,11 +3685,16 @@ paths:
       tags:
         - UserGroups
       parameters:
-        - name: adminEmail
+        - name: admin
           in: query
-          description: Email address of the group admin user. If provided, only groups that the user can manage as admin will be returned.
+          description: Only groups that the user can manage as admin will be returned. Cannot be used together with "member"
           schema:
-            type: string
+            type: boolean
+        - name: member
+          in: query
+          description: Only groups that the user is member of will be returned. Cannot be used together with "admin"
+          schema:
+            type: boolean
       responses:
         "200":
           description: List of groups
@@ -4085,7 +4090,7 @@ paths:
     get:
       operationId: listGroupJoinInvites
       summary: Lists group join invites
-      description: Lists all group join invites for the group. Group admin and users invited to the group can list join invites.
+      description: Lists all group join invites for the group. Group admin can list join invites.
       tags:
         - GroupJoinInvites
       parameters:
@@ -4312,6 +4317,7 @@ components:
       required:
         - status
         - type
+        - groupId
         - metadata
       properties:
         id:
@@ -4344,6 +4350,11 @@ components:
         creatorDisplayName:
           type: string
           description: Formatted full name or username of the creator of the survey
+          readOnly: true
+        groupId:
+          type: string
+          format: uuid
+          description: ID of the user group
           readOnly: true
         metadata:
           $ref: "#/components/schemas/Metadata"
