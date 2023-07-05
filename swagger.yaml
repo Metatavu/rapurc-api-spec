@@ -4355,7 +4355,6 @@ components:
           type: string
           format: uuid
           description: ID of the user group
-          readOnly: true
         metadata:
           $ref: "#/components/schemas/Metadata"
 
