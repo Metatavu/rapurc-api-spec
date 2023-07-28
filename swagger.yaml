@@ -1858,6 +1858,38 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
 
+  /v1/surveys/{surveyId}/sendEmail:
+    post:
+      operationId: sendSurveyEmail
+      summary: Sends email concerning a survey
+      description: Sends email
+      tags:
+        - Emails
+      parameters:
+        - name: surveyId
+          in: path
+          description: Survey Id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmailTemplate"
+        description: Payload
+        required: true
+      responses:
+        "202":
+          description: Accepted
+        "default":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
   /v1/buildingTypes:
     get:
       operationId: listBuildingTypes
@@ -5021,3 +5053,33 @@ components:
         email:
           type: string
           description: email
+
+    EmailTemplate:
+      type: object
+      description: Template of email with its type and necessary data
+      required:
+        - emailAddress
+        - emailType
+      properties:
+        emailAddress:
+          type: string
+          description: target email address
+        emailType:
+          $ref: "#/components/schemas/EmailType"
+        emailData:
+          type: object
+          description: Can be any of *Template (as long as it is consistent with emailType), e.g. BuildingDemolitionContactUpdateTemplate
+
+    EmailType:
+      type: string
+      description: Email type enum
+      enum:
+        - BUILDING_DEMOLITION_CONTACT_UPDATE
+
+    BuildingDemolitionContactUpdateTemplate:
+      type: object
+      description: Email to be sent to user with BUILDING_DEMOLITION_CONTACT_UPDATE type in case building is being demolished and contact person must be informed
+      properties:
+        buildingId:
+          type: string
+          format: uuid
