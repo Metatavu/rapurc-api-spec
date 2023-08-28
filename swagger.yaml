@@ -5014,6 +5014,10 @@ components:
           description: group id
         status:
           $ref: "#/components/schemas/JoinRequestStatus"
+        invitingUserName:
+          type: string
+          description: full name of the user who sent the invite, gets filled in during invite creation
+          readOnly: true
         metadata:
           $ref: "#/components/schemas/Metadata"
 
